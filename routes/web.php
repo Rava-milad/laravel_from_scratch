@@ -3,10 +3,7 @@
 
 
 use App\Models\Post;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
-use Spatie\YamlFrontMatter\YamlFrontMatter;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,10 +22,10 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/posts/{post}', function($slug){
+Route::get('/posts/{post}', function($id){
     return view('post',[
-        'post' => Post::find($slug)
+        'post' => Post::findOrFail($id)
     ]);
 
 
-})->where('post', '[A-z_\-]+');
+});
